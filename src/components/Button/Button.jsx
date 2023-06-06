@@ -2,14 +2,13 @@ import React from 'react';
 
 const Button = ({ onClick, isHidden }) => {
   return (
-    <button
+    <Button
       type="button"
-      className="button"
       onClick={onClick}
       style={{ display: isHidden ? 'none' : 'block' }}
     >
       Load more
-    </button>
+    </Button>
   );
 };
 

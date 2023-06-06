@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -9,7 +9,7 @@ import Button from './Button/Button';
 
 const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
-const App = () => {
+export class App = extends Component {
   const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
