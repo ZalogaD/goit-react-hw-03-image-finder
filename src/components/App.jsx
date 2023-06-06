@@ -34,7 +34,7 @@ const App = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const handleImageClick = largeImgURL => {
+  const handleImgClick = largeImgURL => {
     setSelectedImage(largeImgURL);
   };
 
