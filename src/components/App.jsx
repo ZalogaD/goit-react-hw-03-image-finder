@@ -34,8 +34,8 @@ const App = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const handleImageClick = largeImageURL => {
-    setSelectedImage(largeImageURL);
+  const handleImageClick = largeImgURL => {
+    setSelectedImage(largeImgURL);
   };
 
   const handleCloseModal = () => {
@@ -53,7 +53,7 @@ const App = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <ImageGallery images={images} onImageClick={handleImageClick} />
+        <ImageGallery images={images} onImgClick={handleImgClick} />
       )}
 
       {images.length > 0 && !isLoading && (
