@@ -1,4 +1,5 @@
 import React from 'react';
+import { GalleryImg } from './ImageGalleryItem.styled';
 
 const ImageGalleryItem = ({ webURL, largeImgURL, onImgClick }) => {
   const handleClick = () => {
@@ -6,9 +7,9 @@ const ImageGalleryItem = ({ webURL, largeImgURL, onImgClick }) => {
   };
 
   return (
-    <li className="gallery-item">
-      <img src={webURL} alt="" onClick={handleClick} />
-    </li>
+    <GalleryItem>
+      <GalleryImg src={webURL} alt="" onClick={handleClick} />
+    </GalleryItem>
   );
 };
 

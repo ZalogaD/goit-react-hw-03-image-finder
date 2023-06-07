@@ -21,11 +21,11 @@ const Modal = ({ imageUrl, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="overlay" onClick={handleClick}>
-      <div className="modal">
-        <img src={imageUrl} alt="" />
-      </div>
-    </div>
+    <Overlay onClick={handleClick}>
+      <Modal>
+        <Img src={imageUrl} alt="" />
+      </Modal>
+    </Overlay>
   );
 };
 

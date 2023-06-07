@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 import { Search, Form, Btn, Span, Input } from './Searchbar.styled';
 
 const Searchbar = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = Component;
 
   const handleInputChange = event => {
     setSearchQuery(event.target.value);

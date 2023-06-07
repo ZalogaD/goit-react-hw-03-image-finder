@@ -1,18 +1,18 @@
 import React from 'react';
-import ImageGalleryItem from './ImageGalleryItem';
+import { Gallery } from './ImageGallery.styled';
 
 const ImageGallery = ({ images, onImgClick }) => {
   return (
-    <ul className="gallery">
+    <Gallery>
       {images.map(image => (
-        <ImageGalleryItem
+        <ImgItem
           key={image.id}
           webURL={image.webURL}
           largeImgURL={image.largeImgURL}
           onImgClick={onImgClick}
         />
       ))}
-    </ul>
+    </Gallery>
   );
 };
 
