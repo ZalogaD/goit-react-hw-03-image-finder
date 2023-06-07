@@ -2,71 +2,111 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
-import Loader from './Loader/Loader';
+import { BallTriangle } from 'react-loader-spinner';
 import Modal from './Modal/Modal';
 import Button from './Button/Button';
 
 const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
-export class App = extends Component {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+export class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: '',
+      images: [],
+      page: 1,
+      isLoading: false,
+      selectedImage: null,
+    };
+  }
 
-  const handleSearch = async () => {
+  componentDidMount() {
+    this.handleSearch();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchQuery !== this.state.searchQuery) {
+      this.handleSearch();
+    }
+  }
+
+  handleSearch = async () => {
+    const { searchQuery, page } = this.state;
+
     try {
-      setIsLoading(true);
+      this.setState({ isLoading: true });
       const response = await axios.get(
         `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
-      setImages(response.data.hits);
+
+      this.setState({ images: response.data.hits });
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoading(false);
+      this.setState({ IsLoading: false });
     }
   };
 
-  const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
+  handleLoadMore = () => {
+    this.setState(
+      prevState => ({ page: prevState.page + 1 }),
+      () => {
+        this.handleSearch();
+      }
+    );
   };
 
-  const handleImgClick = largeImgURL => {
-    setSelectedImage(largeImgURL);
+  handleImgClick = largeImgURL => {
+    this.setState({ selectedImage: largeImgURL });
   };
 
-  const handleCloseModal = () => {
-    setSelectedImage(null);
+  handleCloseModal = () => {
+    this.setState({ selectedImage: null });
   };
 
-  return (
-    <div>
-      <Searchbar
-        value={searchQuery}
-        onChange={event => setSearchQuery(event.target.value)}
-        onSubmit={handleSearch}
-      />
+  handleInputChange = event => {
+    this.setState({ searchQuery: event.target.value });
+  };
 
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ImageGallery images={images} onImgClick={handleImgClick} />
-      )}
+  handleSubmit = event => {
+    event.preventDefault();
+    this.handleSearch();
+  };
 
-      {images.length > 0 && !isLoading && (
-        <Button onClick={handleLoadMore}>Load More</Button>
-      )}
+  render() {
+    const { searchQuery, images, isLoading, selectedImage } = this.state;
 
-      {selectedImage && (
-        <Modal onClose={handleCloseModal}>
-          <img src={selectedImage} alt="Large" />
-        </Modal>
-      )}
-    </div>
-  );
-};
+    return (
+      <div>
+        <Searchbar
+          value={searchQuery}
+          onChange={this.handleInputChange}
+          onSubmit={this.handleSearch}
+        />
+
+        {isLoading ? (
+          <BallTriangle
+            type="ThreeDots"
+            color="#00BFFF"
+            height={80}
+            width={80}
+          />
+        ) : (
+          <ImageGallery images={images} onImgClick={this.handleImgClick} />
+        )}
+
+        {images.length > 0 && !isLoading && (
+          <Button onClick={this.handleLoadMore}>Load More</Button>
+        )}
+
+        {selectedImage && (
+          <Modal onClose={this.handleCloseModal}>
+            <img src={selectedImage} alt="Large" />
+          </Modal>
+        )}
+      </div>
+    );
+  }
+}
 
 export default App;

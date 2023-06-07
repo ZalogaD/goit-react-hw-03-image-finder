@@ -1,34 +1,42 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Search, Form, Btn, Span, Input } from './Searchbar.styled';
 
-const Searchbar = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = Component;
-
-  const handleInputChange = event => {
-    setSearchQuery(event.target.value);
+class Searchbar extends Component {
+  state = {
+    searchQuery: '',
   };
 
-  const handleSubmit = event => {
+  handleInputChange = event => {
+    this.setState({ searchQuery: event.target.value });
+  };
+
+  handleSubmit = event => {
     event.preventDefault();
-    onSubmit(searchQuery);
+    this.props.onSubmit(this.state.searchQuery);
   };
 
-  return (
-    <Search>
-      <Form onSubmit={handleSubmit}>
-        <Btn type="submit">
-          <Span>Search</Span>
-        </Btn>
+  render() {
+    const { searchQuery } = this.state;
 
-        <Input
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </Form>
-    </Search>
-  );
-};
+    return (
+      <Search>
+        <Form onSubmit={this.handleSubmit}>
+          <Btn type="submit">
+            <Span>Search</Span>
+          </Btn>
+
+          <Input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            value={searchQuery}
+            onChange={this.handleInputChange}
+          />
+        </Form>
+      </Search>
+    );
+  }
+}
 
 export default Searchbar;
