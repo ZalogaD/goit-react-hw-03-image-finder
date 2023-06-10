@@ -1,15 +1,15 @@
 import React from 'react';
-import { GalleryImg } from './ImageGalleryItem.styled';
-import PropTypes from 'prop-types';
+import { GalleryImg, GalleryItem } from './ImageGalleryItem.styled';
+//import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ webURL, largeImgURL, onImgClick }) => {
+const ImageGalleryItem = ({ webformatURL, largeImgURL, onImgClick, tags }) => {
   const handleClick = () => {
     onImgClick(largeImgURL);
   };
 
   return (
     <GalleryItem>
-      <GalleryImg src={webURL} alt="" onClick={handleClick} />
+      <GalleryImg src={webformatURL} alt={tags} onClick={handleClick} />
     </GalleryItem>
   );
 };
