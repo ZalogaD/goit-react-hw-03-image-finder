@@ -1,5 +1,6 @@
 import React from 'react';
 import { GalleryImg } from './ImageGalleryItem.styled';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ webURL, largeImgURL, onImgClick }) => {
   const handleClick = () => {

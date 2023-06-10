@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import * as API from './API/PixabyAPI';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { BallTriangle } from 'react-loader-spinner';
 import Modal from './Modal/Modal';
 import Button from './Button/Button';
-
-const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
 export class App extends Component {
   constructor(props) {
