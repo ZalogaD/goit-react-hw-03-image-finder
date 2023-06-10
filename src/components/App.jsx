@@ -42,7 +42,7 @@ export class App extends Component {
     } catch (error) {
       console.error(error);
     } finally {
-      this.setState({ IsLoading: false });
+      this.setState({ isLoading: false });
     }
   };
 

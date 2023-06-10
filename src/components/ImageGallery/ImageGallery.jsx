@@ -8,7 +8,7 @@ const ImageGallery = ({ images, onImgClick }) => {
       {images.map(image => (
         <li key={image.id}>
           <img
-            src={image.webURL}
+            src={image.webformatURL}
             alt="Gallery Item"
             onClick={() => onImgClick(onImgClick)}
           />
@@ -22,7 +22,7 @@ ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      webURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
       largeImgURL: PropTypes.string.isRequired,
     })
   ).isRequired,
