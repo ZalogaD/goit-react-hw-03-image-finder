@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as API from './API/PixabyAPI';
+import axios from 'axios';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { BallTriangle } from 'react-loader-spinner';
@@ -30,6 +30,7 @@ export class App extends Component {
 
   handleSearch = async () => {
     const { searchQuery, page } = this.state;
+    const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
     try {
       this.setState({ isLoading: true });

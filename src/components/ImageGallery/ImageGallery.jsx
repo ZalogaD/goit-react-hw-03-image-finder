@@ -6,15 +6,27 @@ const ImageGallery = ({ images, onImgClick }) => {
   return (
     <Gallery>
       {images.map(image => (
-        <ImgItem
-          key={image.id}
-          webURL={image.webURL}
-          largeImgURL={image.largeImgURL}
-          onImgClick={onImgClick}
-        />
+        <li key={image.id}>
+          <img
+            src={image.webURL}
+            alt="Gallery Item"
+            onClick={() => onImgClick(onImgClick)}
+          />
+        </li>
       ))}
     </Gallery>
   );
+};
+
+ImageGallery.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      webURL: PropTypes.string.isRequired,
+      largeImgURL: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onImgClick: PropTypes.func.isRequired,
 };
 
 export default ImageGallery;
