@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const Btn = styled.button`
   font-family: inherit;
   font-size: 18px;
   line-height: 24px;
