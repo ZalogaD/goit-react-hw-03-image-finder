@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { Btn } from './Button.styled';
 
 const Button = ({ onClick, isHidden }) => {
+  const handleClick = event => {
+    event.preventDefault();
+  };
+
   return (
     <Btn
       type="button"
-      onClick={onClick}
+      onClick={handleClick}
       style={{ display: isHidden ? 'none' : 'block' }}
     >
       Load more

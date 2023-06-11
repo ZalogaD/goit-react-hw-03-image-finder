@@ -19,7 +19,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.handleSearch();
+    //this.handleSearch();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,7 +33,7 @@ export class App extends Component {
     const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
     try {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true, images: [] });
       const response = await axios.get(
         `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
@@ -70,7 +70,6 @@ export class App extends Component {
   };
 
   handleSubmit = event => {
-    event.preventDefault();
     this.handleSearch();
   };
 
@@ -82,7 +81,7 @@ export class App extends Component {
         <Searchbar
           value={searchQuery}
           onChange={this.handleInputChange}
-          onSubmit={this.handleSearch}
+          onSubmit={this.handleSubmit}
         />
 
         {isLoading ? (
@@ -93,11 +92,13 @@ export class App extends Component {
             width={80}
           />
         ) : (
-          <ImageGallery
-            images={images}
-            onImgClick={this.handleImgClick}
-            loadMore={this.handleLoadMore}
-          />
+          searchQuery.trim() !== '' && (
+            <ImageGallery
+              images={images}
+              onImgClick={this.handleImgClick}
+              loadMore={this.handleLoadMore}
+            />
+          )
         )}
 
         {images.length > 0 && !isLoading && (
