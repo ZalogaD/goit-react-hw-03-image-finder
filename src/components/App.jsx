@@ -38,7 +38,9 @@ export class App extends Component {
         `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
 
-      this.setState({ images: response.data.hits });
+      this.setState(prevState => ({
+        images: [...prevState.images, ...response.data.hits],
+      }));
     } catch (error) {
       console.error(error);
     } finally {
@@ -91,7 +93,11 @@ export class App extends Component {
             width={80}
           />
         ) : (
-          <ImageGallery images={images} onImgClick={this.handleImgClick} />
+          <ImageGallery
+            images={images}
+            onImgClick={this.handleImgClick}
+            loadMore={this.handleLoadMore}
+          />
         )}
 
         {images.length > 0 && !isLoading && (

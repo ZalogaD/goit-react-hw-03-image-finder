@@ -1,18 +1,24 @@
 import React from 'react';
 import { Gallery } from './ImageGallery.styled';
 import PropTypes from 'prop-types';
+import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-const ImageGallery = ({ images, onImgClick }) => {
+const ImageGallery = ({ images }) => {
   return (
     <Gallery>
       {images.map(image => (
-        <li key={image.id}>
-          <img
-            src={image.webformatURL}
-            alt="Gallery Item"
-            onClick={() => onImgClick(onImgClick)}
-          />
-        </li>
+        <ImageGalleryItem
+          key={image.id}
+          webformatURL={image.webformatURL}
+          tags={image.tags}
+        />
+        //<li key={image.id}>
+        //<img
+        //src={image.webformatURL}
+        //alt="Gallery Item"
+        //onClick={() => onImgClick(onImgClick)}
+        ///>
+        //</li>
       ))}
     </Gallery>
   );
