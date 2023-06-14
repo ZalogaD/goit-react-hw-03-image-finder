@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ images }) => {
+  console.log('images', images);
+
   return (
     <Gallery>
       {images.map(image => (

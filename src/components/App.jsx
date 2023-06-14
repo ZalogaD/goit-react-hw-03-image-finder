@@ -92,7 +92,7 @@ export class App extends Component {
             width={80}
           />
         ) : (
-          searchQuery.trim() !== '' && (
+          searchQuery.length > 0 && (
             <ImageGallery
               images={images}
               onImgClick={this.handleImgClick}
