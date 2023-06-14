@@ -38,9 +38,7 @@ export class App extends Component {
         `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
 
-      this.setState(prevState => ({
-        images: [...prevState.images, ...response.data.hits],
-      }));
+      this.setState({ images: response.data.hits });
     } catch (error) {
       console.error(error);
     } finally {
@@ -69,7 +67,8 @@ export class App extends Component {
     this.setState({ searchQuery: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = value => {
+    this.setState({ searchQuery: value });
     this.handleSearch();
   };
 
