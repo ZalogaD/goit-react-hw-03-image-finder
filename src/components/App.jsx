@@ -15,6 +15,7 @@ export class App extends Component {
       page: 1,
       isLoading: false,
       selectedImage: null,
+      totalHits: 0,
     };
   }
 
@@ -33,12 +34,17 @@ export class App extends Component {
     const API_KEY = '35194171-84f1d5f9b415a31c1af013b41';
 
     try {
-      this.setState({ isLoading: true, images: [] });
+      this.setState({ isLoading: true });
       const response = await axios.get(
         `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
 
-      this.setState({ images: response.data.hits });
+      const { hits, totalHits } = response.data;
+
+      this.setState(prevState => ({
+        images: [...prevState.images, ...hits],
+        totalHits: totalHits,
+      }));
     } catch (error) {
       console.error(error);
     } finally {
@@ -73,7 +79,9 @@ export class App extends Component {
   };
 
   render() {
-    const { searchQuery, images, isLoading, selectedImage } = this.state;
+    const { searchQuery, images, isLoading, selectedImage, totalHits } =
+      this.state;
+    const showLoadMoreButton = images.length > 0 && images.length !== totalHits;
 
     return (
       <div>
@@ -100,13 +108,13 @@ export class App extends Component {
           )
         )}
 
-        {images.length > 0 && !isLoading && (
-          <Button onClick={this.handleLoadMore}>Load More</Button>
+        {showLoadMoreButton && (
+          <Button onClick={this.handleLoadMore}>Завантажити ще</Button>
         )}
 
         {selectedImage && (
           <Modal onClose={this.handleCloseModal}>
-            <img src={selectedImage} alt="Large" />
+            <img src={selectedImage} alt="Велике зображення" />
           </Modal>
         )}
       </div>
