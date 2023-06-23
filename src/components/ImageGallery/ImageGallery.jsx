@@ -13,6 +13,7 @@ const ImageGallery = ({ images, onImgClick }) => {
           key={image.id}
           webformatURL={image.webformatURL}
           tags={image.tags}
+          onImgClick={onImgClick}
         />
       ))}
     </Gallery>

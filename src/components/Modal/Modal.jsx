@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Overlay, ModalCont } from './Modal.styled';
 
-const Modal = ({ imageUrl, onClose }) => {
+const Modal = ({ selectedImage, onClose }) => {
   useEffect(() => {
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
@@ -25,7 +25,7 @@ const Modal = ({ imageUrl, onClose }) => {
   return (
     <Overlay onClick={handleClick}>
       <ModalCont>
-        <img src={imageUrl} alt="" />
+        <img src={selectedImage} alt="" />
       </ModalCont>
     </Overlay>
   );
