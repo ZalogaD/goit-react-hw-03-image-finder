@@ -13,7 +13,7 @@ const ImageGallery = ({ images, onImgClick }) => {
           key={image.id}
           webformatURL={image.webformatURL}
           tags={image.tags}
-          largeImgURL={image.largeImgURL}
+          largeImgURL={image.largeImageURL}
           onImgClick={onImgClick}
         />
       ))}
