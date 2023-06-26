@@ -126,7 +126,7 @@ export class App extends Component {
         )}
 
         {selectedImage && (
-          <Modal imageUrl={selectedImage} onClose={this.handleCloseModal}>
+          <Modal selectedImage={selectedImage} onClose={this.handleCloseModal}>
             <img src={selectedImage} alt="Велике зображення" />
           </Modal>
         )}

@@ -32,7 +32,7 @@ const Modal = ({ selectedImage, onClose }) => {
 };
 
 Modal.propTypes = {
-  imageUrl: PropTypes.string.isRequired,
+  selectedImage: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
