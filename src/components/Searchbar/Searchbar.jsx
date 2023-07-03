@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Search, Form, Btn, Span, Input } from './Searchbar.styled';
 import { ReactComponent as Icon } from '../iconbar.svg';
+import PropTypes from 'prop-types';
 
-class Searchbar extends Component {
+export class Searchbar extends Component {
   state = {
     searchQuery: '',
   };
@@ -17,8 +18,6 @@ class Searchbar extends Component {
   };
 
   render() {
-    const { searchQuery } = this.state;
-
     return (
       <Search>
         <Form onSubmit={this.handleSubmit}>
@@ -32,7 +31,7 @@ class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={searchQuery}
+            value={this.state.searchQuery}
             onChange={this.handleInputChange}
           />
         </Form>
@@ -40,5 +39,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Searchbar;

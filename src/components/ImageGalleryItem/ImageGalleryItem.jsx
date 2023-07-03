@@ -1,17 +1,21 @@
 import React from 'react';
-import { GalleryImg, GalleryItem } from './ImageGalleryItem.styled';
+import { GalleryItem } from './ImageGalleryItem.styled';
 //import PropTypes from 'prop-types';
 
-const ImageGalleryItem = ({ webformatURL, largeImgURL, onImgClick, tags }) => {
-  const handleClick = () => {
-    onImgClick(largeImgURL);
-  };
+const ImageGalleryItem = ({ webformatURL, onImgClick, tags, image }) => (
+  <li>
+    <GalleryItem
+      src={webformatURL}
+      alt={tags}
+      onClick={() => onImgClick(image)}
+    />
+  </li>
+);
 
-  return (
-    <GalleryItem>
-      <GalleryImg src={webformatURL} alt={tags} onClick={handleClick} />
-    </GalleryItem>
-  );
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  onImgClick: PropTypes.func.isRequired,
 };
 
 export default ImageGalleryItem;

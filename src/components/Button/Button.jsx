@@ -2,17 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Btn } from './Button.styled';
 
-const Button = ({ onClick, isHidden }) => {
-  const handleClick = event => {
-    event.preventDefault();
-  };
-
+const Button = ({ onClick }) => {
   return (
-    <Btn
-      type="button"
-      onClick={handleClick}
-      style={{ display: isHidden ? 'none' : 'block' }}
-    >
+    <Btn onClick={onClick} type="button">
       Load more
     </Btn>
   );
@@ -20,7 +12,6 @@ const Button = ({ onClick, isHidden }) => {
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  isHidden: PropTypes.bool,
 };
 
 export default Btn;

@@ -1,12 +1,21 @@
 import React from 'react';
-import LoaderSpinner from 'react-loader-spinner';
+import { BallTriangle } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
-const Loader = () => {
+const Loader = ({ visible }) => {
   return (
-    <Loader>
-      <LoaderSpinner type="Oval" color="#00BFFF" height={50} width={50} />
-    </Loader>
+    <>
+      {visible && (
+        <div className="wrap">
+          <BallTriangle type="Oval" color="#00BFFF" height={50} width={50} />
+        </div>
+      )}
+    </>
   );
+};
+
+Loader.propTypes = {
+  visible: PropTypes.bool.isRequired,
 };
 
 export default Loader;
