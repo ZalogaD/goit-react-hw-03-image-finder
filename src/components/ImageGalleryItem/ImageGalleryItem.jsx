@@ -1,6 +1,6 @@
 import React from 'react';
 import { GalleryItem } from './ImageGalleryItem.styled';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ webformatURL, onImgClick, tags, image }) => (
   <li>

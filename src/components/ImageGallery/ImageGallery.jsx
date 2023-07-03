@@ -9,7 +9,6 @@ export class ImageGallery extends Component {
     selectedImage: null,
   };
 
-<<<<<<< HEAD
   handleImgClick = selectedImage => {
     this.setState({ selectedImage });
   };
@@ -45,29 +44,14 @@ export class ImageGallery extends Component {
     );
   }
 }
-=======
-  return (
-    <Gallery>
-      {images.map(image => (
-        <ImageGalleryItem
-          key={image.id}
-          webformatURL={image.webformatURL}
-          tags={image.tags}
-          largeImgURL={image.largeImageURL}
-          onImgClick={onImgClick}
-        />
-      ))}
-    </Gallery>
-  );
-};
->>>>>>> 8906b21bb2c20f51b738cdfb27cb2fbad1182b9b
 
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string,
-      largeImgURL: PropTypes.string,
+      tags: PropTypes.string.isRequired,
+      largeImgURL: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

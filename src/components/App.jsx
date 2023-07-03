@@ -3,7 +3,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { BallTriangle } from 'react-loader-spinner';
 import Button from './Button/Button';
-import fetchParams from './API/PixabyAPI';
+import { fetchParams } from './API/PixabyAPI';
 import { Cont } from './App.styled';
 export class App extends Component {
   state = {
