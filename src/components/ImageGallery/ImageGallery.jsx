@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Modal from '../Modal/Modal';
 
-export class ImageGallery extends Component {
+class ImageGallery extends Component {
   state = {
     selectedImage: null,
   };
@@ -51,7 +51,7 @@ ImageGallery.propTypes = {
       id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string,
       tags: PropTypes.string.isRequired,
-      largeImgURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
