@@ -19,9 +19,10 @@ export const Btn = styled.button`
   border: 0;
   text-decoration: none;
   cursor: pointer;
+  margin: 0 auto;
 
-  &Button:hover,
-  &Button:focus {
+  :hover,
+  :focus {
     background-color: #303f9f;
   }
 `;
